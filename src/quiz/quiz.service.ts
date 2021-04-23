@@ -29,12 +29,18 @@ constructor(private connection: Connection){}
             quizObject.questions = quizObject?.questions?? []; 
             quizObject.questions.push(newQuestion);
             quizObject.save();
+            return ({
+                     message: 'Question added to Quiz',
+                     status: HttpStatus.CREATED
+                    })
         }
         catch(err){
             this.logger.error(err, err.detail);
             return new HttpException('Failed adding Question to Quiz.', HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
+
+    
 }
 
    
